@@ -1,147 +1,97 @@
-# Weather-Temperature-Prediction-using-RNN
-A time‑series forecasting model built with TensorFlow/Keras to predict future temperatures using historical weather data. Includes preprocessing, RNN training, evaluation, and 7‑day forecasting with visualizations.
+# 🌤️ Weather Temperature Prediction using RNN
+
+A time-series forecasting project built in **Google Colab** using **Recurrent Neural Networks (RNN)** to predict future temperature values based on historical weather data.
+
+---
+
 ## 📌 Project Overview
-This project demonstrates how RNNs can model sequential weather data and forecast future temperature values.
+This project demonstrates how RNNs can model sequential weather data and forecast future temperature values.  
 It includes:
 
--Data loading & cleaning
+- Data loading & cleaning  
+- Time-series preprocessing (windowing)  
+- Feature scaling  
+- RNN model building & training  
+- Evaluation using MSE, MAE, R²  
+- Future temperature forecasting  
+- Visualizations for trends and predictions  
 
--Time‑series preprocessing (windowing)
-
--Feature scaling
-
--RNN model building & training
-
--Evaluation using MSE, MAE, R²
-
--Future temperature forecasting
-
--Visualizations for trends and predictions
+---
 
 ## 📂 Dataset
-The dataset is downloaded using KaggleHub:
+- Source: Kaggle (via KaggleHub)  
+- File: `weatherHistory.csv`  
+- Contains temperature, humidity, wind speed, and other weather attributes  
+- `Formatted Date` converted to datetime and set as index  
 
-Source: muthuj7/weather-dataset
+---
 
-File used: weatherHistory.csv
+## 🧼 Data Preprocessing
+- Removed missing values (only in *Precip Type*)  
+- Selected features: Temperature, Humidity, Wind Speed  
+- Target: Temperature  
+- Applied MinMaxScaler  
+- Created 7‑day sliding windows for RNN input  
 
-Contains temperature, humidity, wind speed, and other weather attributes
-
-The Formatted Date column is converted to datetime and set as the index for time‑series analysis.
-
-##🧼 Data Preprocessing
-✔️ Handle Missing Values
-Only the Precip Type column had missing values
-
-Rows with missing values were removed
-
-✔️ Feature Selection
-Selected features:
-
-Temperature (C)
-
-Humidity
-
-Wind Speed (km/h)
-
-Target variable:
-
-Temperature (C)
-
-✔️ Normalization
-Applied MinMaxScaler to scale all features to the range 0–1.
-
-✔️ Sequence Creation
-A sliding window of 7 days is used:
-
-X: past 7 days of features
-
-y: next day temperature
+---
 
 ## 🧠 Model Architecture
-A simple but effective RNN model:
+- `SimpleRNN(64, activation='relu')`  
+- `Dropout(0.2)`  
+- `Dense(1)` output layer  
+- Loss: **MSE**  
+- Optimizer: **Adam**  
 
-SimpleRNN(64, activation='relu')
-
-Dropout(0.2)
-
-Dense(1) output layer
-
-Compiled with:
-
-Loss: Mean Squared Error (MSE)
-
-Optimizer: Adam
-
-Metric: Mean Absolute Error (MAE)
+---
 
 ## 🏋️ Training
-Trained for 50 epochs
+- 50 epochs  
+- Batch size: 32  
+- Validation split: 15%  
+- Stable convergence without overfitting  
 
-Batch size: 32
-
-Validation split: 15%
-
-Loss curves show stable convergence without overfitting.
+---
 
 ## 📊 Evaluation
-Metrics on test data:
+| Metric | Score |
+|--------|--------|
+| **MSE** | ~0.0004 |
+| **MAE** | ~0.0122 |
+| **R² Score** | ~0.9835 |
 
-MSE: ~0.0004
+Excellent predictive performance.
 
-MAE: ~0.0122
+---
 
-R² Score: ~0.9835
+## 🔮 Forecasting
+- Predicts next **7 days** of temperature  
+- Uses last 7 days of scaled data  
+- Predictions inverse-transformed back to °C  
 
-These results indicate excellent predictive performance.
+---
 
-## 🔮 Forecasting Future Temperatures
-The model predicts:
+## 📈 Visualizations
+- Temperature trend  
+- Training vs validation loss  
+- Actual vs predicted  
+- Forecast vs recent history  
 
-Next 7 days of temperature
-
-Using the last 7 days of scaled data
-
-Predictions are inverse‑transformed back to °C
-
-A combined plot shows:
-
-Last 100 actual temperature values
-
-Model predictions
-
-Future 7‑day forecast
-
-## 📈 Visualizations Included
-Temperature trend over time
-
-Training vs validation loss
-
-Actual vs predicted temperatures
-
-Forecast vs recent history
+---
 
 ## 🛠️ Technologies Used
-Python
+`Python` `Google Colab` `TensorFlow` `Keras`  
+`NumPy` `Pandas` `Matplotlib` `Scikit-learn`
 
-Google Colab
-
-TensorFlow / Keras
-
-NumPy, Pandas
-
-Matplotlib
-
-Scikit‑learn
+---
 
 ## 🚀 How to Run
-Open the notebook in Google Colab
+1. Open the notebook in Google Colab  
+2. Install dependencies  
+3. Run all cells sequentially  
+4. Ensure KaggleHub authentication  
 
-Install dependencies (if required)
-
-Run all cells sequentially
-
-Ensure KaggleHub is authenticated for dataset download
+---
 
 ## 📜 License
-This project is for educational and research purposes.
+For educational and research purposes.
+
